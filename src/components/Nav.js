@@ -2,7 +2,7 @@ import {useState} from 'react';
 
 const Nav = () =>{
 
-    const [selected, setSelected] = useState('underLinePosition1');
+    const [underLinePosition, setUnderLinePosition] = useState('underLinePosition1');
 
     const handleUnderline = (e) =>{
         e.preventDefault();
@@ -14,21 +14,21 @@ const Nav = () =>{
             };
         };
         if(e.target.classList.contains('one')){
-            setSelected('underLinePosition1');
+            setUnderLinePosition('underLinePosition1');
             e.target.parentNode.lastChild.removeAttribute('class');
-            e.target.parentNode.lastChild.classList.add(selected);
+            e.target.parentNode.lastChild.classList.add(underLinePosition);
             return;
         };
         if(e.target.classList.contains('two')){
-            setSelected('underLinePosition2')
+            setUnderLinePosition('underLinePosition2')
             e.target.parentNode.lastChild.removeAttribute('class');
-            e.target.parentNode.lastChild.classList.add(selected);
+            e.target.parentNode.lastChild.classList.add(underLinePosition);
             return;
         };
         if(e.target.classList.contains('three')){
-            setSelected('underLinePosition3');
+            setUnderLinePosition('underLinePosition3');
             e.target.parentNode.lastChild.removeAttribute('class');
-            e.target.parentNode.lastChild.classList.add(selected);
+            e.target.parentNode.lastChild.classList.add(underLinePosition);
             return;
         };
     };
@@ -39,7 +39,7 @@ const Nav = () =>{
                 <a href="/" className={`one  font-openSans  align-middle  mx-4  active`} onClick={handleUnderline}>Productos</a>
                 <a href="/" className={`two  font-openSans  align-middle  mx-4`} onClick={handleUnderline}>Servicios</a>
                 <a href="/" className={`three  font-openSans  align-middle  mx-4`} onClick={handleUnderline}>Contacto</a>
-                <hr className={selected}/>
+                <hr className={underLinePosition}/>
             </div>
             
         </>
