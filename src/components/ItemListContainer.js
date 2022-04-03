@@ -1,8 +1,10 @@
-const ItemListContainer = ({greeting}) =>{
+import Product from "./Product";
+
+const ItemListContainer = () =>{
     return(
-        <>
-            <h2 className="flex  justify-center  items-center">{greeting}</h2>
-        </>
+        <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <Product/>
+        </div>
     );
 };
 

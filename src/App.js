@@ -1,11 +1,12 @@
 import NavBar from './components/NavBar';
 import ItemListContainer from './components/ItemListContainer';
 
+
 function App() {
   return (
-    <div className="container mx-auto">
+    <div>
       <NavBar/>
-      <ItemListContainer greeting = 'Greetings coder'/>
+      <ItemListContainer/>
     </div>
   );
 };

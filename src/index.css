@@ -5,7 +5,7 @@
 
 @layer components{
     .active{
-        @apply font-bold text-selectedColor;
+        @apply font-bold;
     }
     .unactive{
         @apply font-normal;
@@ -13,36 +13,9 @@
 }
 
 @layer utilities{
-    .two:hover ~ hr {
-        margin-left: 39%;
-    }
-      
-    .three:hover ~ hr {
-        margin-left: 70%;
-    }
-      
-    .four:hover ~ hr {
-        margin-left: 75%;
-    }
-      
-    hr {
-        height: .25rem;
-        width: 5rem;
-        background: tomato;
-        margin-left: 1rem;
-        border: none;
-        transition: .5s ease-in-out;
-    }
-
-    .underLinePosition1 {
-        margin-left: 1rem;
-    }
-
-    .underLinePosition2{
-        margin-left: 7.4rem;
-    }
-
-    .underLinePosition3{
-        margin-left: 13.5rem;
+    .slide{
+        position: absolute;
+        top: 0;
+        background: white; 
     }
 }

@@ -1,10 +1,28 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
+import BurguerMenu from './BurguerMenu';
+import CartWidget from "./CartWidget";
+import NavMenu from './NavMenu'
+import NavMenuSmall from './NavMenuSmall';
+
 
 const Nav = () =>{
 
-    const [underLinePosition, setUnderLinePosition] = useState('underLinePosition1');
+    const [viewportDimensions, setViewportDimensions] = useState(window.innerWidth);
+    const [viewPanel, setViewPanel] = useState(false)
 
-    const handleUnderline = (e) =>{
+    useEffect(() =>{
+        const handleResize = () =>{
+            setViewportDimensions(window.innerWidth)
+            
+        }
+        window.addEventListener('resize', handleResize);
+
+        return ()=>{
+            window.removeEventListener('resize', handleResize);
+        };
+    },[]);
+
+    const handleSelect = (e) =>{
         e.preventDefault();
         for(let i of e.target.parentNode.children){
             if(i === e.target){
@@ -13,33 +31,22 @@ const Nav = () =>{
                 i.classList.remove('active');
             };
         };
-        if(e.target.classList.contains('one')){
-            setUnderLinePosition('underLinePosition1');
-            e.target.parentNode.lastChild.removeAttribute('class');
-            e.target.parentNode.lastChild.classList.add(underLinePosition);
-            return;
-        };
-        if(e.target.classList.contains('two')){
-            setUnderLinePosition('underLinePosition2')
-            e.target.parentNode.lastChild.removeAttribute('class');
-            e.target.parentNode.lastChild.classList.add(underLinePosition);
-            return;
-        };
-        if(e.target.classList.contains('three')){
-            setUnderLinePosition('underLinePosition3');
-            e.target.parentNode.lastChild.removeAttribute('class');
-            e.target.parentNode.lastChild.classList.add(underLinePosition);
-            return;
-        };
     };
+
+    const handleOpenPanel = () =>{
+        setViewPanel(true)
+    }
+
+    const handleClosePanel=() =>{
+        setViewPanel(false)
+    }
     
     return(
         <>
-            <div className= "pt-14 pl-7" >
-                <a href="/" className={`one  font-openSans  align-middle  mx-4  active`} onClick={handleUnderline}>Productos</a>
-                <a href="/" className={`two  font-openSans  align-middle  mx-4`} onClick={handleUnderline}>Servicios</a>
-                <a href="/" className={`three  font-openSans  align-middle  mx-4`} onClick={handleUnderline}>Contacto</a>
-                <hr className={underLinePosition}/>
+            <div className= "flex  justify-end  mr-16  md:justify-center  items-center" >
+                <CartWidget />
+                {viewportDimensions <= 730 ? <BurguerMenu handleOpenPanel = {handleOpenPanel}/> : <NavMenu handleSelect = {handleSelect}/>}
+                {viewportDimensions <=730? <NavMenuSmall viewPanel = {viewPanel} handleSelect = {handleSelect} handleClosePanel = {handleClosePanel}/>: false}
             </div>
             
         </>
