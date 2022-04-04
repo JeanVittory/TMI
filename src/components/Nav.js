@@ -5,21 +5,21 @@ import NavMenu from './NavMenu'
 import NavMenuSmall from './NavMenuSmall';
 
 
+
 const Nav = () =>{
 
     const [viewportDimensions, setViewportDimensions] = useState(window.innerWidth);
     const [viewPanel, setViewPanel] = useState(false)
-
+    
     useEffect(() =>{
         const handleResize = () =>{
             setViewportDimensions(window.innerWidth)
-            
         }
         window.addEventListener('resize', handleResize);
-
+    
         return ()=>{
             window.removeEventListener('resize', handleResize);
-        };
+        };       
     },[]);
 
     const handleSelect = (e) =>{
@@ -45,8 +45,8 @@ const Nav = () =>{
         <>
             <div className= "flex  justify-end  mr-16  md:justify-center  items-center" >
                 <CartWidget />
-                {viewportDimensions <= 730 ? <BurguerMenu handleOpenPanel = {handleOpenPanel}/> : <NavMenu handleSelect = {handleSelect}/>}
-                {viewportDimensions <=730? <NavMenuSmall viewPanel = {viewPanel} handleSelect = {handleSelect} handleClosePanel = {handleClosePanel}/>: false}
+                {[viewportDimensions] <= 730 ? <BurguerMenu handleOpenPanel = {handleOpenPanel}/> : <NavMenu handleSelect = {handleSelect}/>}
+                {[viewportDimensions] <=730? <NavMenuSmall viewPanel = {viewPanel} handleClosePanel = {handleClosePanel}/>: false}
             </div>
             
         </>
