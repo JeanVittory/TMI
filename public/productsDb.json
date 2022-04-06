@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "image": "app-tmi/src/assets/redsuncult_assets/red_sun_tshirt_black.png",
+        "image": "merchImage/red_sun_tshirt_black.png",
         "name": "Classic Red Sun Cult - Black",
         "price": 12.00,
         "sizes": ["S", "M", "L", "XL"]
@@ -9,20 +9,20 @@
     },
     {
         "id": 2,
-        "image": "../assets/redsuncult_assets/void_traveler_tshirt_black.png",
+        "image": "merchImage/void_traveler_tshirt_black.png",
         "name": "Void Traveler - Black",
         "price": 20.00,
         "sizes": ["S", "M", "L", "XL"]
     },
     {
         "id": 3,
-        "image": "../assets/redsuncult_assets/red_sun_cap.png",
+        "image": "merchImage/red_sun_cap.png",
         "name": "Red Sun Cult Cap - Black",
         "price": 10.00
     },
     {
         "id": 4,
-        "image": "../assets/redsuncult_assets/red_sun_sleeve.png",
+        "image": "merchImage/red_sun_sleeve.png",
         "name": "Red Sun Cult Cap - Black",
         "price": 15.00,
         "sizes": ["S", "M", "L", "XL"]
