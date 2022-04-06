@@ -1,4 +1,4 @@
-const Sizes = ({handleSelect}) =>{
+const Sizes = ({handleSelect, sizes}) =>{
     return (
         <div className='flex  justify-center items-start mt-7 gap-10' >
                 

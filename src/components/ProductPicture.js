@@ -1,17 +1,17 @@
-import productImage from '../assets/redsuncult_assets/camisa_1.png'
+// import productImage from '../assets/redsuncult_assets/red_sun_tshirt_black.png'
 
-const productPicture = () =>{
+const productPicture = ({picture, name, price}) =>{
     return(
         <>
             <div className='flex flex-col  justify-center items-center'>
-                <img src={productImage} alt="Camisa Negra con Logo" className='w-8/12 lg:w-full'/>
+                <img src={picture} alt="Camisa Negra con Logo" className='w-8/12 lg:w-full'/>
             </div>
             <div className='flex flex-col  justify-center items-center'>
                 <p className=' w-8/12  lg:w-full  font-Mono  text-sm  pt-3  text-left'>
-                    Classic Red Sun Cult - Black
+                    {name}
                 </p>
                 <p className='w-8/12  lg:w-full  font-Mono  text-sm  text-left'>
-                    $12.00
+                    {price}
                 </p>
             </div>
         </>

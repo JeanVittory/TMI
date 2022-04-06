@@ -5,9 +5,10 @@ import ProductQuantity from './ProductQuantity';
 import Sizes from './Sizes';
 import {useState} from 'react';
 
-const Product = () =>{
+const Product = ({picture, name, price, sizes}) =>{
 
-    const [currentStock, setCurrentStock] = useState(10)
+    const [currentStock, setCurrentStock] = useState(10);
+    
 
     const handleSelect = (e) =>{
         e.preventDefault();
@@ -29,8 +30,8 @@ const Product = () =>{
 
     return(
         <div className='grid grid-cols-1 mt-12 '>
-            <ProductPicture/>
-            <Sizes handleSelect={handleSelect}/>
+            <ProductPicture picture={picture} name = {name} price = {price}/>
+            <Sizes handleSelect={handleSelect} sizes= {sizes}/>
             <ProductQuantity initialStock = {currentStock} updateStock = {updateStock}/>
             <AddToCart/>
         </div>
