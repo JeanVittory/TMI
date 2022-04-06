@@ -1,4 +1,5 @@
 import {useState} from 'react';
+import PropTypes from 'prop-types'
 
 const useQuantity = (initialStock) =>{
     const [quantity, setQuantity] = useState(0);
@@ -22,3 +23,8 @@ const useQuantity = (initialStock) =>{
 }
 
 export default useQuantity;
+
+
+useQuantity.propTypes = {
+    initialStock: PropTypes.number,
+}

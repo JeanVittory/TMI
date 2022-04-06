@@ -3,6 +3,7 @@ import AddToCart from './AddToCart.js';
 import ProductPicture from './ProductPicture.js';
 import ProductQuantity from './ProductQuantity';
 import Sizes from './Sizes';
+import PropTypes from 'prop-types';
 import {useState} from 'react';
 
 const Product = ({picture, name, price, sizes}) =>{
@@ -39,3 +40,10 @@ const Product = ({picture, name, price, sizes}) =>{
 }
 
 export default Product;
+
+Product.propTypes= {
+    picture: PropTypes.string,
+    name: PropTypes.string,
+    price: PropTypes.number,
+    sizes: PropTypes.array
+}

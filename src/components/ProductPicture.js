@@ -1,4 +1,4 @@
-// import productImage from '../assets/redsuncult_assets/red_sun_tshirt_black.png'
+import PropTypes from 'prop-types'
 
 const productPicture = ({picture, name, price}) =>{
     return(
@@ -19,3 +19,9 @@ const productPicture = ({picture, name, price}) =>{
 };
 
 export default productPicture;
+
+productPicture.propTypes = {
+    picture: PropTypes.string,
+    name: PropTypes.string,
+    price: PropTypes.number
+}

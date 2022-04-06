@@ -3,6 +3,7 @@ import less from '../assets/svgs/less.svg'
 import useQuantity from '../hooks/useQuantity';
 import { useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
+import PropTypes from 'prop-types'
 import 'react-toastify/dist/ReactToastify.css';
 
 const ProductQuantity = ({initialStock, updateStock}) =>{
@@ -35,3 +36,8 @@ const ProductQuantity = ({initialStock, updateStock}) =>{
 };
 
 export default ProductQuantity;
+
+ProductQuantity.propTypes = {
+    initialStock: PropTypes.number,
+    updateStock: PropTypes.func
+}

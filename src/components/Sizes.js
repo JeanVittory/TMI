@@ -1,3 +1,5 @@
+import PropTypes from 'prop-types'
+
 const Sizes = ({handleSelect, sizes}) =>{
 
     return (
@@ -18,7 +20,7 @@ const Sizes = ({handleSelect, sizes}) =>{
                 </div>
             </div>):(
                 <div className='flex  justify-center items-start mt-7 gap-10'>
-                    <div className="flex justify-center items-center  border  border-black  w-1/2  h-full  font-Mono  text-sm  text-center  lg:cursor-pointer">Single Size</div>
+                    <div className="flex justify-center items-center  border  border-black  w-1/2  h-full  font-Mono  text-sm  text-center">Single Size</div>
                 </div>
             )}
            
@@ -28,3 +30,8 @@ const Sizes = ({handleSelect, sizes}) =>{
 };
 
 export default Sizes;
+
+Sizes.propTypes = {
+    handleSelect: PropTypes.func,
+    sizes: PropTypes.array
+}
