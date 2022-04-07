@@ -6,9 +6,9 @@ import Sizes from './Sizes';
 import PropTypes from 'prop-types';
 import {useState} from 'react';
 
-const Product = ({picture, name, price, sizes}) =>{
+const Product = ({picture, name, price, sizes, stock, id, idClickDetail}) =>{
 
-    const [currentStock, setCurrentStock] = useState(10);
+    const [currentStock, setCurrentStock] = useState(stock);
     
 
     const handleSelect = (e) =>{
@@ -29,9 +29,13 @@ const Product = ({picture, name, price, sizes}) =>{
         setCurrentStock(currentStock)
     }
 
+    const handleDetailId = () =>{
+        idClickDetail(id)
+    }
+
     return(
         <div className='grid grid-cols-1 mt-12 '>
-            <ProductPicture picture={picture} name = {name} price = {price}/>
+            <ProductPicture picture={picture} name = {name} price = {price} id = {id} handleDetailId= {handleDetailId}/>
             <Sizes handleSelect={handleSelect} sizes= {sizes}/>
             <ProductQuantity initialStock = {currentStock} updateStock = {updateStock}/>
             <AddToCart/>

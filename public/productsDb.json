@@ -1,14 +1,15 @@
 [
     {
         "id": 1,
+        "stock": 10,
         "image": "merchImage/red_sun_tshirt_black.png",
         "name": "Classic Red Sun Cult - Black",
         "price": 12.00,
         "sizes": ["S", "M", "L", "XL"]
-
     },
     {
         "id": 2,
+        "stock": 8,
         "image": "merchImage/void_traveler_tshirt_black.png",
         "name": "Void Traveler - Black",
         "price": 20.00,
@@ -16,12 +17,14 @@
     },
     {
         "id": 3,
+        "stock": 12,
         "image": "merchImage/red_sun_cap.png",
         "name": "Red Sun Cult Cap - Black",
         "price": 10.00
     },
     {
         "id": 4,
+        "stock": 10,
         "image": "merchImage/red_sun_sleeve.png",
         "name": "Red Sun Cult Cap - Black",
         "price": 15.00,

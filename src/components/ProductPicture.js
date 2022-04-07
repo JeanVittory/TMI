@@ -1,11 +1,14 @@
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom';
 
-const productPicture = ({picture, name, price}) =>{
+
+const productPicture = ({picture, name, price, id, handleDetailId}) =>{
+
     return(
         <>
-            <div className='flex justify-center items-center w-full md:h-80 md:w-80'>
-                <img src={picture} alt="Camisa Negra con Logo" className=' w-4/5 md:h-full md:w-auto '/>
-            </div>
+           
+            <Link to={`/products/${id}`} className='flex justify-center items-center w-full md:h-80 md:w-80'><img src={picture} alt="Camisa Negra con Logo" className=' w-4/5 md:h-full md:w-auto ' onClick={handleDetailId}/></Link>
+            
             <div className='flex flex-col  justify-center items-center'>
                 <p className=' w-8/12  lg:w-full  font-Mono  text-sm  pt-3  text-left'>
                     {name}
