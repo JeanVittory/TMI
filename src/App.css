@@ -2,5 +2,10 @@ body{
     overflow-x: hidden;
 }
 
+*:focus{
+    outline: none;
+    caret-color: #ffff;
+}
+
 
 

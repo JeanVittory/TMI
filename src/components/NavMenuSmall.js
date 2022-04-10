@@ -18,8 +18,8 @@ const NavMenuSmall = ({viewPanel, handleClosePanel}) =>{
 
 
     return (
-        <div className={`transition-all  ease-in-out duration-1000  h-screen  w-2/6 bg-slate-100 slide  ${positionPanel}`}>
-             <img src={rightArrow} alt="Close Button"  className='w-7 m-3' onClick={handleClosePanel}/>
+        <div className={`transition-all  ease-in-out duration-1000  h-screen  w-2/6  bg-slate-100  slide  ${positionPanel}`}>
+            <img src={rightArrow} alt="Close Button"  className='w-7 m-3' onClick={handleClosePanel}/>
             <div className= {`h-full flex  flex-col  justify-center  items-center`} >
                 <a href="/" className="font-Mono  text-base  tracking-wide  text-black  p-3  cursor-default lg:cursor-pointer">HOME</a>
                 <hr className='text-black w-28  border-1'/>

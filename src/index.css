@@ -14,7 +14,7 @@
 
 @layer utilities{
     .slide{
-        position: absolute;
+        position: fixed;
         top: 0;
         background: white; 
     }
@@ -49,6 +49,10 @@
     .btn.btn-background-slide{
         z-index: 1;
         transition: color 500ms ease-in-out;
+    }
+
+    .circle{
+        position:relative;
     }
 
    

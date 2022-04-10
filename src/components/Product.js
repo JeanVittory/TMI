@@ -3,39 +3,22 @@ import AddToCart from './AddToCart.js';
 import ProductPicture from './ProductPicture.js';
 import ProductQuantity from './ProductQuantity';
 import Sizes from './Sizes';
+import handleSelect from '../helpers/handleSelect.js';
 import PropTypes from 'prop-types';
 import {useState} from 'react';
 
-const Product = ({picture, name, price, sizes, stock, id, idClickDetail}) =>{
+const Product = ({picture, name, price, sizes, stock, id, discount}) =>{
 
     const [currentStock, setCurrentStock] = useState(stock);
-    
-
-    const handleSelect = (e) =>{
-        e.preventDefault();
-        
-        for(let i of e.target.parentNode.children){
-            if(i === e.target){
-                i.classList.add('btn-background-slide-click');
-                console.log(i)
-               
-            }else{
-                i.classList.remove('btn-background-slide-click'); 
-            };
-        };
-    };
 
     const updateStock = (currentStock) =>{
         setCurrentStock(currentStock)
     }
 
-    const handleDetailId = () =>{
-        idClickDetail(id)
-    }
 
     return(
         <div className='grid grid-cols-1 mt-12 '>
-            <ProductPicture picture={picture} name = {name} price = {price} id = {id} handleDetailId= {handleDetailId}/>
+            <ProductPicture picture={picture} name = {name} price = {price} id = {id} discount= {discount}/>
             <Sizes handleSelect={handleSelect} sizes= {sizes}/>
             <ProductQuantity initialStock = {currentStock} updateStock = {updateStock}/>
             <AddToCart/>
