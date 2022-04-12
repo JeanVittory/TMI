@@ -1,4 +1,5 @@
 import {useState, useEffect} from 'react';
+import PropTypes from 'prop-types'
 import rightArrow from '../assets/svgs/rightArrowPanelSmall.svg'
 import facebook from '../assets/svgs/facebook.svg'
 import instagram from '../assets/svgs/instagram.svg'
@@ -39,3 +40,8 @@ const NavMenuSmall = ({viewPanel, handleClosePanel}) =>{
 }
 
 export default NavMenuSmall;
+
+NavMenuSmall.propTypes = {
+    handleClosePanel: PropTypes.func,
+    viewPanel:PropTypes.bool
+}

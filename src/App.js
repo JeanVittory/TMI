@@ -1,10 +1,10 @@
 import NavBar from './components/NavBar';
 import ItemListContainer from './components/ItemListContainer';
 import "./App.css"
-import {useState} from 'react'
-import {BrowserRouter as Router, Routes, Route, Link, BrowserRouter} from 'react-router-dom'
+import {BrowserRouter as Router, Routes, Route} from 'react-router-dom'
 import ItemDetailContainer from './components/ItemDetailContainer';
 import Footer from './components/Footer';
+import Error404 from './components/Error404';
 
 
 function App() {
@@ -12,16 +12,16 @@ function App() {
 
   return (
     <div className='overflow-x-hidden'>
-      <BrowserRouter>
+      <Router>
         <NavBar/>
         <Routes>
-          <Route path= '/home' element ={<ItemListContainer/>}/>
-          <Route path='/products/:productId' element={<ItemDetailContainer/>}/>
+          <Route path= '/' element ={<ItemListContainer/>}/>
+          <Route path = '/category/:categoryName' element = {<ItemListContainer/>}/>
+          <Route path='/item/:productId' element={<ItemDetailContainer/>}/>
+          <Route path = '*' element = {<Error404/>}/>
         </Routes>
         <Footer/>
-      </BrowserRouter>  
-      
-      
+      </Router>  
     </div>
   );
 };

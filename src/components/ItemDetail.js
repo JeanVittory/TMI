@@ -4,6 +4,7 @@ import ProductQuantity from "./ProductQuantity";
 import AddToCart from "./AddToCart";
 import imageDiscount from '../assets/redsuncult_assets/discountImageDetail.png'
 import { useState, useEffect } from "react";
+import PropTypes from 'prop-types'
 
 const ItemDetail = ({product}) => {
 
@@ -81,3 +82,7 @@ const ItemDetail = ({product}) => {
 };
 
 export default ItemDetail;
+
+ItemDetail.propTypes={
+    products: PropTypes.array
+}

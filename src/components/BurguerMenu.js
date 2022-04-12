@@ -1,4 +1,5 @@
 import menuBars from "../assets/svgs/menuBars.svg"
+import PropTypes from 'prop-types'
 
 const BurguerMenu = ({handleOpenPanel}) =>{
     return(
@@ -9,3 +10,7 @@ const BurguerMenu = ({handleOpenPanel}) =>{
 }
 
 export default BurguerMenu
+
+BurguerMenu.propTypes = {
+    handleOpenPanel: PropTypes.func
+}

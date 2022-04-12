@@ -5,7 +5,7 @@ const Logo = () =>{
     return(
         <>
         <div className="w-28 container mx-auto ">
-            <Link to='/home'><img src={logo} alt="logo de la empresa"/></Link>
+            <Link to='/'><img src={logo} alt="logo de la empresa"/></Link>
         </div>
     </>   
     ); 

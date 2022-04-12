@@ -1,4 +1,3 @@
-
 import AddToCart from './AddToCart.js';
 import ProductPicture from './ProductPicture.js';
 import ProductQuantity from './ProductQuantity';
@@ -32,5 +31,6 @@ Product.propTypes= {
     picture: PropTypes.string,
     name: PropTypes.string,
     price: PropTypes.number,
-    sizes: PropTypes.array
+    sizes: PropTypes.array,
+    discount: PropTypes.number
 }
