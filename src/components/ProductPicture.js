@@ -1,5 +1,5 @@
 import discountImage from '../assets/svgs/discount_flag.svg'
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
@@ -8,14 +8,14 @@ const ProductPicture = ({picture, name, price, id, discount}) =>{
     
     const [discountQuantity, setDiscountQuantity] = useState(null);
     const [priceWithDiscount, setPriceWithDiscount] = useState(null);
-    const [discountStyle, setDiscountStyle] = useState("");
+    const [discountStyle, setDiscountStyle] = useState('');
     
     useEffect(()=>{
         if(discount){
             setDiscountQuantity(discount);  
             setDiscountStyle("line-through");
             discountOperation();
-        }
+        };
 
     },[])
 
@@ -31,7 +31,7 @@ const ProductPicture = ({picture, name, price, id, discount}) =>{
             <Link to={`/item/${id}`} className='flex justify-center items-center w-full md:h-80 md:w-80'><img src={picture} alt="Camisa Negra con Logo" className=' w-4/5 md:h-full md:w-auto'/></Link>
             
             <div className='flex  flex-col  justify-start  items-start  md:justify-start  md:items-start  md:pl-8  mx-20  md:mx-0'>
-                <p className=' w-8/12  lg:w-full  font-Mono  text-sm  pt-3  text-left'>
+                <p className='w-8/12  lg:w-full  font-Mono  text-sm  pt-3  text-left'>
                     {name}
                 </p>
                 {discountQuantity ?(
@@ -46,12 +46,12 @@ const ProductPicture = ({picture, name, price, id, discount}) =>{
                         </div>
                         <div>
                             <div className='bg-red-500  w-7  h-6  rounded-full flex justify-center items center'>
-                                <img src={discountImage} alt="discount" className='relative top-1  w-4 h-4 md:w-4 md:h-4 '/> 
+                                <img src={discountImage} alt='discount' className='relative top-1  w-4 h-4 md:w-4 md:h-4 '/> 
                             </div>
                         </div>
                     </div>
                 ):(
-                    <p className={`w-8/12  lg:w-full  font-Mono  text-sm `}>
+                    <p className={'w-8/12  lg:w-full  font-Mono  text-sm '}>
                     ${price.toFixed(2) }
                 </p>
                 )

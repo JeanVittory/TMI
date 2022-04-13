@@ -1,11 +1,11 @@
-import logo from "../assets/redsuncult_assets/logo.png";
-import { Link } from "react-router-dom";
+import logo from '../assets/redsuncult_assets/logo.png';
+import { Link } from 'react-router-dom';
 
 const Logo = () =>{
     return(
         <>
-        <div className="w-28 container mx-auto ">
-            <Link to='/'><img src={logo} alt="logo de la empresa"/></Link>
+        <div className='w-28 container mx-auto'>
+            <Link to='/'><img src={logo} alt='logo de la empresa'/></Link>
         </div>
     </>   
     ); 

@@ -11,8 +11,8 @@ const Product = ({picture, name, price, sizes, stock, id, discount}) =>{
     const [currentStock, setCurrentStock] = useState(stock);
 
     const updateStock = (currentStock) =>{
-        setCurrentStock(currentStock)
-    }
+        setCurrentStock(currentStock);
+    };
 
 
     return(
@@ -22,8 +22,8 @@ const Product = ({picture, name, price, sizes, stock, id, discount}) =>{
             <ProductQuantity initialStock = {currentStock} updateStock = {updateStock}/>
             <AddToCart/>
         </div>
-    )
-}
+    );
+};
 
 export default Product;
 
@@ -33,4 +33,4 @@ Product.propTypes= {
     price: PropTypes.number,
     sizes: PropTypes.array,
     discount: PropTypes.number
-}
+};
