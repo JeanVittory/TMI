@@ -14,38 +14,43 @@ const ItemListContainer = () =>{
     let navigate = useNavigate();
 
     useEffect(()=>{
-        setTimeout( async () => {
-            const urlFetch = './productsCategoriesAvailables.json';
-            const dataFetched = await fetchCategories(urlFetch);
-            setCategories(dataFetched);
-        }, 1000);
+        setTimeout(() => {
+            ( async () => {
+                const urlFetch = '/productsCategoriesAvailables.json';
+                const dataFetched = await fetchCategories(urlFetch);
+                setCategories(dataFetched);
+            })();
+        }, 2000);
 
         return (()=>{
             setCategories([]);
         });
     },[]);
     
-    useEffect(() =>{
-        setTimeout(async () => {
-            const urlFetch = './productsDb.json';
-            const dataFetched = await fetchData(urlFetch);
-            setProducts(dataFetched);
-        }, 2000);
-    },[products]);
-    
     useEffect(()=>{
-        setTimeout(async () => {
-            const urlFetch = '/productsDb.json';
-            const dataFetched = await fetchDataByCategory(categoryName, urlFetch);
-            setProducts(dataFetched);
+        setTimeout(() => {
+            (async () => {
+                let products = [];
+                const urlFetch = '/productsDb.json';
+                if(!categoryName){
+                    products = await fetchData(urlFetch)
+                }else{
+                    products = await fetchDataByCategory(categoryName, urlFetch);
+                }
+                setProducts(products);
+            })();   
         }, 2000);
-        
-     },[categoryName]);
 
-     const handleSelectCategories = (value) =>{
+        return (()=>{
+            setProducts([]);
+        });
+        
+    },[categoryName]);
+
+    const handleSelectCategories = (value) =>{
         navigate(value);
         setProducts([]);
-     };
+    };
 
     return(
         <>        
@@ -61,7 +66,7 @@ const ItemListContainer = () =>{
                             {products.map( e => <Product key={e.id} id={e.id} stock={e.stock} picture= {e.image} name = {e.name} price = {e.price} sizes = {e.sizes || null} discount={e.discount || null}/> )}
                         </div>
                     </>
-                )}
+                )};
         </>
     );
 };

@@ -1,7 +1,11 @@
 const fetchCategoriesAvailable = async (urlFetch) => {
-    const res = await fetch(urlFetch)
-    const data = res.json()
-    return data
+    try {        
+        const res = await fetch(urlFetch);
+        const data = await res.json();
+        return data;
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 export default fetchCategoriesAvailable

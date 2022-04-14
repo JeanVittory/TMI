@@ -26,5 +26,5 @@ export default useQuantity;
 
 
 useQuantity.propTypes = {
-    initialStock: PropTypes.number,
+    initialStock: PropTypes.number
 }
