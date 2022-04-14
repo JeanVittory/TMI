@@ -39,32 +39,8 @@ Instead, it will copy all the configuration files and the transitive dependencie
 
 You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## `Introduction to the project`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+This ecommerce is built with React, using [React Hooks](https://reactjs.org/docs/hooks-intro.html), [React-Router-Dom](https://reactrouter.com/docs/en/v6/upgrading/v5), [React-Toastify](https://www.npmjs.com/package/react-toastify), [Spinners-React](https://www.npmjs.com/package/spinners-react).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+It consists of a merchandise store for Red Sun cult, a rock band from the city of Cali, Colombia. It has a navigation through 3 sections: `Home`, `FAQS`, `Contact`. In turn, it has a filter that allows the specific visualization of different types of merchandise by categories. The application seeks to work, as much as possible, from a database from where the UI extends different types of components according to the information it receives from it, as is the case of discount items, for example. Finally, the application has a footer from which an input is displayed in order to collect emails from both customers and people interested in receiving information about future products or discounts.
