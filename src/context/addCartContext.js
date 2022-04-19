@@ -21,8 +21,6 @@ const AddCartProvider = ({children})=>{
     
     const data = {handleAddProduct, productsAdded};
     
-    console.log(productsAdded)
-
     return(
         <AddContext.Provider value = {data}>
             {children}
