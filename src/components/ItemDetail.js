@@ -2,8 +2,10 @@ import Sizes from './Sizes';
 import handleSelect from '../helpers/handleSelect';
 import ProductQuantity from './ProductQuantity';
 import AddToCart from './AddToCart';
+import GoToCart from './GoToCart';
 import imageDiscount from '../assets/redsuncult_assets/discountImageDetail.png';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import AddContext from "../context/addCartContext";
 import PropTypes from 'prop-types';
 
 const ItemDetail = ({product}) => {
@@ -12,8 +14,11 @@ const ItemDetail = ({product}) => {
     const [discountQuantity, setDiscountQuantity] = useState(null);
     const [priceWithDiscount, setPriceWithDiscount] = useState(null);
     const [discountStyle, setDiscountStyle] = useState('');
+    const [quantityRetrieved, setQuantityRetrieved] = useState(null);
+    const {productsAdded} = useContext(AddContext)
 
-    
+    let isProduct = productsAdded.filter(item => item.id === product.id )
+
     useEffect(()=>{
         if(product.discount){
             setDiscountQuantity(product.discount);  
@@ -32,6 +37,10 @@ const ItemDetail = ({product}) => {
         let result = product.price - prevResult;
         setPriceWithDiscount(result);
     };
+
+    const quantityRetriever = (quantity) =>{
+        setQuantityRetrieved(quantity)
+    }
 
     return (
         <>        
@@ -62,10 +71,11 @@ const ItemDetail = ({product}) => {
                         <Sizes sizes={product.sizes} handleSelect={handleSelect}/>
                     </div>
                     <div className='mt-5'>
-                        <ProductQuantity initialStock={currentStock} updateStock={updateStock}/>
+                        <ProductQuantity initialStock={currentStock} updateStock={updateStock} quantityRetriever = {quantityRetriever}/>
                     </div>
-                    <div className='mt-14'>
-                        <AddToCart/>
+                    <div className= {`mt-14 ${isProduct.length > 0 ? "flex justify-around items-center ": ''}`} >
+                        <AddToCart key ={product.id} id = {product.id} name = {product.name} price = {product.price} quantity =       {quantityRetrieved}/>
+                        {isProduct.length > 0 ? <GoToCart/> : false}
                     </div>
                 </div>
             </div>

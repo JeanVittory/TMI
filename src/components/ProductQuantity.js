@@ -6,17 +6,19 @@ import { ToastContainer, toast } from 'react-toastify';
 import PropTypes from 'prop-types';
 import 'react-toastify/dist/ReactToastify.css';
 
-const ProductQuantity = ({initialStock, updateStock}) =>{
+const ProductQuantity = ({initialStock, updateStock, quantityRetriever}) =>{
     const [quantity, currentStock, handlerClickQuantityAdd, handlerQuantityLess] = useQuantity(initialStock);
 
     useEffect(()=>{
         updateStock(currentStock);
-        if(!(currentStock)){
+        if(currentStock === 1 ){
             toast("You've reached the maximum number of products available!", {
                 bodyClassName: 'font-Mono text-sm'
             });
-        }
+        };
     }, [currentStock]);
+
+    quantityRetriever(quantity)
 
     return(
         <div className='flex justify-center item-center'>

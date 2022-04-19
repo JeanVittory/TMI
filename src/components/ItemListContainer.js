@@ -43,8 +43,7 @@ const ItemListContainer = () =>{
 
         return (()=>{
             setProducts([]);
-        });
-        
+        }); 
     },[categoryName]);
 
     const handleSelectCategories = (value) =>{
