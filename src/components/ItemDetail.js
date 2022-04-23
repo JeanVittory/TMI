@@ -15,6 +15,7 @@ const ItemDetail = ({product}) => {
     const [priceWithDiscount, setPriceWithDiscount] = useState(null);
     const [discountStyle, setDiscountStyle] = useState('');
     const [quantityRetrieved, setQuantityRetrieved] = useState(null);
+    const [sizeRetrieved, setSizeRetrieved] = useState (null);
     const {productsAdded} = useContext(AddContext)
 
     let isProduct = productsAdded.filter(item => item.id === product.id )
@@ -40,6 +41,10 @@ const ItemDetail = ({product}) => {
 
     const quantityRetriever = (quantity) =>{
         setQuantityRetrieved(quantity)
+    }
+
+    const sizeRetriever = (size) =>{
+        setSizeRetrieved(size)
     }
 
     return (
@@ -68,13 +73,13 @@ const ItemDetail = ({product}) => {
                     <p className='font-Sans text-xs  tracking-widest'>COLOR: <span className='align-top  font-Mono text-[9px]'>{product.color.color}</span></p>
                     <div className='w-6  h-6 border-2 border-black  mt-2  flex justify-center items-center'><div className={'bg-black  w-4  h-4'}></div></div>
                     <div className='mt-10'>
-                        <Sizes sizes={product.sizes} handleSelect={handleSelect}/>
+                        <Sizes sizes={product.sizes} handleSelect={handleSelect} sizeRetriever = {sizeRetriever}/>
                     </div>
                     <div className='mt-5'>
                         <ProductQuantity initialStock={currentStock} updateStock={updateStock} quantityRetriever = {quantityRetriever}/>
                     </div>
                     <div className= {`mt-14 ${isProduct.length > 0 ? "flex justify-around items-center ": ''}`} >
-                        <AddToCart key ={product.id} id = {product.id} name = {product.name} price = {product.price} quantity =       {quantityRetrieved}/>
+                        <AddToCart key ={product.id} id = {product.id} name = {product.name} price = {product.price} quantity = {quantityRetrieved} size = {sizeRetrieved}/>
                         {isProduct.length > 0 ? <GoToCart/> : false}
                     </div>
                 </div>

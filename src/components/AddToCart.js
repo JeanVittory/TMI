@@ -3,7 +3,9 @@ import AddContext from "../context/addCartContext";
 
 const AddToCart = ({id,name, price, quantity, size}) =>{
 
-    const {handleAddProduct} = useContext(AddContext)
+    const {handleAddProduct} = useContext(AddContext);
+
+    
 
     return (
         <div className='flex justify-center  items-center my-8'>

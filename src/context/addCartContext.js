@@ -1,4 +1,5 @@
 import { createContext, useState} from "react";
+import { ToastContainer, toast } from 'react-toastify';
 
 const AddContext = createContext()
 
@@ -7,6 +8,13 @@ const AddCartProvider = ({children})=>{
     const[productsAdded, setProductsAdded] = useState([]);
     
     const handleAddProduct = (dataProductAdded) =>{
+
+        if(!(dataProductAdded.size)){
+            toast("Please specified the size of your product", {
+                bodyClassName: 'font-Mono text-sm'
+            });
+            return;
+        }
 
         if(!(productsAdded.length)){
             setProductsAdded(dataProductAdded)

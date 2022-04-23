@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import { useState } from 'react';
 
+
 const Sizes = ({sizes, sizeRetriever}) =>{
 
     const [selectedSize, setSelectedSize] = useState("");
@@ -20,9 +21,10 @@ const Sizes = ({sizes, sizeRetriever}) =>{
     };
 
     const handleSelectedSize = (e) =>{
-        setSelectedSize(e.target.getAttribute("data-size"))
+        setSelectedSize(e.target.getAttribute("data-size"));
     }
-    sizeRetriever(selectedSize)
+
+    sizeRetriever(selectedSize);
 
     return (
         
@@ -36,6 +38,5 @@ const Sizes = ({sizes, sizeRetriever}) =>{
 export default Sizes;
 
 Sizes.propTypes = {
-    handleSelect: PropTypes.func,
     sizes: PropTypes.array
 };

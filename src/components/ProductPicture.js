@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 
-const ProductPicture = ({picture, name, price, id, discount}) =>{
+const ProductPicture = ({picture, name, price, id, discount, priceRetriever}) =>{
     
     const [discountQuantity, setDiscountQuantity] = useState(null);
     const [priceWithDiscount, setPriceWithDiscount] = useState(null);
@@ -25,6 +25,9 @@ const ProductPicture = ({picture, name, price, id, discount}) =>{
         setPriceWithDiscount(result);
     }
 
+    
+    priceWithDiscount?  priceRetriever(parseFloat(priceWithDiscount)):priceRetriever(parseFloat(price));
+
     return(
         <>
             <Link to={`/item/${id}`} className='flex justify-center items-center w-full md:h-80 md:w-80'><img src={picture} alt="Camisa Negra con Logo" className=' w-4/5 md:h-full md:w-auto'/></Link>
@@ -37,10 +40,10 @@ const ProductPicture = ({picture, name, price, id, discount}) =>{
                     <div className='flex justify-between items-center w-5/6'>
                         <div className='flex'>                    
                             <p className={`w-8/12  lg:w-full  font-Mono  text-sm   ${discountStyle}`}>
-                                ${price.toFixed(2) }
+                                ${price.toFixed(2)};
                             </p>
                             <p className='w-8/12  lg:w-full  font-Mono  text-sm pl-3'>
-                                ${priceWithDiscount.toFixed(2)}
+                                ${priceWithDiscount.toFixed(2)};
                             </p>
                         </div>
                         <div>
@@ -51,7 +54,7 @@ const ProductPicture = ({picture, name, price, id, discount}) =>{
                     </div>
                 ):(
                     <p className={'w-8/12  lg:w-full  font-Mono  text-sm '}>
-                    ${price.toFixed(2) }
+                    ${price.toFixed(2)};
                 </p>
                 )
                  }
