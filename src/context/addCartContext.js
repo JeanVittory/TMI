@@ -13,17 +13,23 @@ const AddCartProvider = ({children})=>{
             toast("Please specified the size of your product", {
                 bodyClassName: 'font-Mono text-sm'
             });
-            return;
         }
 
         if(!(productsAdded.length) || dataProductAdded.singleSize){
             setProductsAdded(dataProductAdded)
         }
+
         const exist = productsAdded.find(e => e.id === dataProductAdded.id)
         if(exist){
             setProductsAdded(productsAdded.map(e => e.id === dataProductAdded.id ? {...exist, quantity: exist.quantity += dataProductAdded.quantity}: e))
+            toast("Your product is waiting in the cart :) thanks!", {
+                bodyClassName: 'font-Mono text-sm'
+            });
         }else{
             setProductsAdded([...productsAdded, dataProductAdded])
+            toast("Your product is waiting in the cart :) thanks!", {
+                bodyClassName: 'font-Mono text-sm'
+            });
         }
     }
     
@@ -31,9 +37,23 @@ const AddCartProvider = ({children})=>{
         const newSetArray = productsAdded.filter(e => e.id !== id)
         setProductsAdded(newSetArray)
     }
+
+
+    const handlerQuantityLess = (id) =>{
+        const exist = productsAdded.find(e => e.id === id)
+        if(exist && exist.quantity > 1){
+            setProductsAdded(productsAdded.map(e => e.id === id ? {...exist, quantity: exist.quantity -= 1}: e))
+        }
+    }
+
+    const handlerQuantityAdd = (id) =>{
+        const exist = productsAdded.find(e => e.id === id)
+        if(exist && exist.quantity < exist.stock){
+            setProductsAdded(productsAdded.map(e => e.id === id ? {...exist, quantity: exist.quantity += 1}: e))
+        }
+    }
     
-    const data = {handleAddProduct, productsAdded, removeItem};
-    console.log(productsAdded)
+    const data = {handleAddProduct, productsAdded, removeItem, handlerQuantityLess, handlerQuantityAdd};
     
     return(
         <AddContext.Provider value = {data}>

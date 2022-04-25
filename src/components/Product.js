@@ -47,7 +47,7 @@ const Product = ({picture, name, price, sizes, stock, id, discount, singleSize})
             <Sizes handleSelect={handleSelect} sizes= {sizes} sizeRetriever = {sizeRetriever}/>
             <ProductQuantity initialStock = {currentStock} updateStock = {updateStock} quantityRetriever = {quantityRetriever} />
             <div className={isProduct.length > 0 ? "flex justify-around items-center ": ''}>
-                <AddToCart key ={id} id = {id} singleSize ={singleSize} name = {name} price = {priceRetrieved} quantity = {quantityRetrieved} size={sizeRetrieved} picture = {pictureRetrieved}/>
+                <AddToCart key ={id} id = {id} singleSize ={singleSize} name = {name} price = {priceRetrieved} quantity = {quantityRetrieved} size={sizeRetrieved} picture = {pictureRetrieved} stock = {stock}/>
                 {isProduct.length > 0 ? <GoToCart/>:false}
             </div>
         </div>

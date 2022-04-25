@@ -47,6 +47,8 @@ const ItemDetail = ({product}) => {
         setSizeRetrieved(size)
     }
 
+    console.log(product)
+
     return (
         <>        
             <div className='container mx-auto grid grid-cols-1 md:grid-cols-2  mt-12 gap-24'>
@@ -79,7 +81,7 @@ const ItemDetail = ({product}) => {
                         <ProductQuantity initialStock={currentStock} updateStock={updateStock} quantityRetriever = {quantityRetriever}/>
                     </div>
                     <div className= {`mt-14 ${isProduct.length > 0 ? "flex justify-around items-center ": ''}`} >
-                        <AddToCart key ={product.id} id = {product.id} name = {product.name} price = {product.price} quantity = {quantityRetrieved} size = {sizeRetrieved} picture = {product.picture}/>
+                        <AddToCart key ={product.id} id = {product.id} name = {product.name} price = {product.price} quantity = {quantityRetrieved} size = {sizeRetrieved} picture = {product.image} stock= {product.stock}/>
                         {isProduct.length > 0 ? <GoToCart/> : false}
                     </div>
                 </div>
