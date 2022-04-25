@@ -29,7 +29,8 @@
         "color": "Black",
         "name": "Red Sun Cult Cap - Black",
         "discount": 15,
-        "price": 10.00
+        "price": 10.00,
+        "singleSize": true
     },
     {
         "id": 4,

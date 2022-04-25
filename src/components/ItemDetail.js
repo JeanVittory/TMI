@@ -79,7 +79,7 @@ const ItemDetail = ({product}) => {
                         <ProductQuantity initialStock={currentStock} updateStock={updateStock} quantityRetriever = {quantityRetriever}/>
                     </div>
                     <div className= {`mt-14 ${isProduct.length > 0 ? "flex justify-around items-center ": ''}`} >
-                        <AddToCart key ={product.id} id = {product.id} name = {product.name} price = {product.price} quantity = {quantityRetrieved} size = {sizeRetrieved}/>
+                        <AddToCart key ={product.id} id = {product.id} name = {product.name} price = {product.price} quantity = {quantityRetrieved} size = {sizeRetrieved} picture = {product.picture}/>
                         {isProduct.length > 0 ? <GoToCart/> : false}
                     </div>
                 </div>

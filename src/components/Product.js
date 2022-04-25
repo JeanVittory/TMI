@@ -8,12 +8,13 @@ import PropTypes from 'prop-types';
 import {useState, useContext} from 'react';
 import AddContext from "../context/addCartContext";
 
-const Product = ({picture, name, price, sizes, stock, id, discount}) =>{
+const Product = ({picture, name, price, sizes, stock, id, discount, singleSize}) =>{
 
     const [currentStock, setCurrentStock] = useState(stock);
     const [quantityRetrieved, setQuantityRetrieved] = useState(null);
     const [sizeRetrieved, setSizeRetrieved] = useState (null);
     const [priceRetrieved, setPriceRetrieved] = useState(null);
+    const [pictureRetrieved, setPictureRetrieved] = useState(null)
     const {productsAdded} = useContext(AddContext);
 
 
@@ -33,23 +34,25 @@ const Product = ({picture, name, price, sizes, stock, id, discount}) =>{
         setPriceRetrieved(price)
     }
 
+    const pictureRetriever = (picture) =>{
+        setPictureRetrieved(picture)
+    }
+
     let isProduct = productsAdded.filter(item => item.id === id )
  
 
     return(
         <div className='grid grid-cols-1 mt-12 '>
-            <ProductPicture picture={picture} name = {name} price = {price} id = {id} discount= {discount} priceRetriever = {priceRetriever}/>
+            <ProductPicture picture={picture} name = {name} price = {price} id = {id} discount= {discount} priceRetriever = {priceRetriever} pictureRetriever = {pictureRetriever}/>
             <Sizes handleSelect={handleSelect} sizes= {sizes} sizeRetriever = {sizeRetriever}/>
             <ProductQuantity initialStock = {currentStock} updateStock = {updateStock} quantityRetriever = {quantityRetriever} />
             <div className={isProduct.length > 0 ? "flex justify-around items-center ": ''}>
-                <AddToCart key ={id} id = {id} name = {name} price = {priceRetrieved} quantity = {quantityRetrieved} size={sizeRetrieved}/>
+                <AddToCart key ={id} id = {id} singleSize ={singleSize} name = {name} price = {priceRetrieved} quantity = {quantityRetrieved} size={sizeRetrieved} picture = {pictureRetrieved}/>
                 {isProduct.length > 0 ? <GoToCart/>:false}
             </div>
         </div>
     );
 };
-
-
 
 export default Product;
 
@@ -60,5 +63,3 @@ Product.propTypes= {
     sizes: PropTypes.array,
     discount: PropTypes.number
 };
-
-// {isProduct.length > 0 ? <GoToCart/> : <AddToCart key ={id} id = {id} name = {name} price = {price} quantity = {quantityRetrieved}/> }

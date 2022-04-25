@@ -62,7 +62,7 @@ const ItemListContainer = () =>{
                     <>
                         <SelectCategories categories= {categories} handleSelectCategories= {handleSelectCategories}/>
                         <div className='container mx-auto grid grid-cols-1  justify-center content-center md:grid-cols-2 lg:grid-cols-3  gap-4'>  
-                            {products.map( e => <Product key={e.id} id={e.id} stock={e.stock} picture= {e.image} name = {e.name} price = {e.price} sizes = {e.sizes || null} discount={e.discount || null}/> )}
+                            {products.map( e => <Product key={e.id} id={e.id} singleSize = {e.singleSize} stock={e.stock} picture= {e.image} name = {e.name} price = {e.price} sizes = {e.sizes || null} discount={e.discount || null}/> )}
                         </div>
                     </>
                 )};

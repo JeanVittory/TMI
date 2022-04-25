@@ -1,5 +1,5 @@
 import { createContext, useState} from "react";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 const AddContext = createContext()
 
@@ -9,14 +9,14 @@ const AddCartProvider = ({children})=>{
     
     const handleAddProduct = (dataProductAdded) =>{
 
-        if(!(dataProductAdded.size)){
+        if(!(dataProductAdded.size) && !(dataProductAdded.singleSize)){
             toast("Please specified the size of your product", {
                 bodyClassName: 'font-Mono text-sm'
             });
             return;
         }
 
-        if(!(productsAdded.length)){
+        if(!(productsAdded.length) || dataProductAdded.singleSize){
             setProductsAdded(dataProductAdded)
         }
         const exist = productsAdded.find(e => e.id === dataProductAdded.id)
@@ -25,10 +25,16 @@ const AddCartProvider = ({children})=>{
         }else{
             setProductsAdded([...productsAdded, dataProductAdded])
         }
-    }    
-    const data = {handleAddProduct, productsAdded};
-
+    }
+    
+    const removeItem = (id) =>{
+        const newSetArray = productsAdded.filter(e => e.id !== id)
+        setProductsAdded(newSetArray)
+    }
+    
+    const data = {handleAddProduct, productsAdded, removeItem};
     console.log(productsAdded)
+    
     return(
         <AddContext.Provider value = {data}>
             {children}
