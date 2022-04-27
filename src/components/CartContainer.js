@@ -21,7 +21,6 @@ const CartContainer = () =>{
         subTotal()
     }, [productsAdded])
 
-
     const handleNavigate = () =>{
         navigate('/');
     };
