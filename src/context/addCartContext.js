@@ -13,6 +13,7 @@ const AddCartProvider = ({children})=>{
             toast("Please specified the size of your product", {
                 bodyClassName: 'font-Mono text-sm'
             });
+            return;
         }
 
         if(!(productsAdded.length) || dataProductAdded.singleSize){

@@ -8,7 +8,8 @@
         "color": "Black",
         "discount": 0,
         "price": 12,
-        "sizes": ["S", "M", "L", "XL"]
+        "sizes": ["S", "M", "L", "XL"],
+        "singleSize": false
     },
     {
         "id": 2,
@@ -19,7 +20,8 @@
         "color": "Black",
         "discount": 10,
         "price": 20,
-        "sizes": ["S", "M", "L", "XL"]
+        "sizes": ["S", "M", "L", "XL"],
+        "singleSize": false
     },
     {
         "id": 3,
@@ -29,7 +31,7 @@
         "color": "Black",
         "name": "Red Sun Cult Cap - Black",
         "discount": 15,
-        "price": 10.00,
+        "price": 10,
         "singleSize": true
     },
     {
@@ -41,6 +43,7 @@
         "color": "Black",
         "discount": 0,
         "price": 5.00,
-        "sizes": ["S", "M", "L", "XL"]
+        "sizes": ["S", "M", "L", "XL"],
+        "singleSize": false
     }
 ]

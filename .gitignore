@@ -5,6 +5,12 @@
 /.pnp
 .pnp.js
 
+
+fetchCategoriesAvailable.js
+fetchData.js
+fetchDataByCategory.js
+fetchDataFiltered.js
+
 # testing
 /coverage
 

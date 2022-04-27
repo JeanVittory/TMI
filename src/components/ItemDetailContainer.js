@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { SpinnerCircularSplit } from 'spinners-react';
-import fetchDataFiltered from '../services/fetchDataFiltered';
+import { getDoc, doc } from 'firebase/firestore';
+import { firestoreDb } from '../services/firebase';
 import ItemDetail from './ItemDetail';
 
 const ItemDetailContainer = () =>{
@@ -10,12 +11,12 @@ const ItemDetailContainer = () =>{
    
 
     useEffect(()=>{
-        setTimeout(async ()=>{
-            const urlFetch = '/productsDb.json';
-            const productFiltered = await fetchDataFiltered(productId, urlFetch);
-            setProduct(productFiltered);
-        }, 2000);
 
+        getDoc(doc(firestoreDb, 'products', productId)).then(response =>{
+            console.log(response)
+            const product = {id: response.id, ...response.data()}
+            setProduct(product)
+        })
     },[]);
 
     return(

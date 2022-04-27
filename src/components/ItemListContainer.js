@@ -1,11 +1,10 @@
 import Product from './Product';
 import { useParams, useNavigate } from 'react-router-dom';
 import { SpinnerCircularSplit } from 'spinners-react';
-import fetchData from '../services/fetchData'
+import { getDocs, collection, query, where } from 'firebase/firestore';
 import {useState, useEffect} from 'react';
-import fetchDataByCategory from '../services/fetchDataByCategory';
 import SelectCategories from './SelectCategories';
-import fetchCategories from '../services/fetchCategoriesAvailable';
+import { firestoreDb } from '../services/firebase';
 
 const ItemListContainer = () =>{
     const [products, setProducts]= useState([]);
@@ -14,13 +13,13 @@ const ItemListContainer = () =>{
     let navigate = useNavigate();
 
     useEffect(()=>{
-        setTimeout(() => {
-            ( async () => {
-                const urlFetch = '/productsCategoriesAvailables.json';
-                const dataFetched = await fetchCategories(urlFetch);
-                setCategories(dataFetched);
-            })();
-        }, 2000);
+
+        getDocs(collection(firestoreDb, 'productsCategoriesAvailables')).then(response =>{
+            const categories = response.docs.map(doc =>{
+                return {id: doc.id, ...doc.data()}
+            })
+            setCategories(categories)
+        });
 
         return (()=>{
             setCategories([]);
@@ -28,22 +27,22 @@ const ItemListContainer = () =>{
     },[]);
     
     useEffect(()=>{
-        setTimeout(() => {
-            (async () => {
-                let products = [];
-                const urlFetch = '/productsDb.json';
-                if(!categoryName){
-                    products = await fetchData(urlFetch)
-                }else{
-                    products = await fetchDataByCategory(categoryName, urlFetch);
-                }
-                setProducts(products);
-            })();   
-        }, 2000);
 
+        const collectionRef = categoryName 
+            ? query(collection(firestoreDb, "products"), where('category', '==', categoryName))
+            : collection(firestoreDb, 'products')
+
+        getDocs(collectionRef).then(response =>{
+            const products = response.docs.map(doc =>{
+                return {id: doc.id, ...doc.data()}
+            })
+            setProducts(products)
+        });
+        
         return (()=>{
             setProducts([]);
-        }); 
+        });
+
     },[categoryName]);
 
     const handleSelectCategories = (value) =>{
