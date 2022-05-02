@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 
 
-const ProductPicture = ({picture, name, price, id, discount, priceRetriever, pictureRetriever}) =>{
+const ProductPicture = ({picture, name, price, id, discount, priceRetriever, pictureRetriever, stock}) =>{
     
     const [discountQuantity, setDiscountQuantity] = useState(null);
     const [priceWithDiscount, setPriceWithDiscount] = useState(null);
@@ -25,13 +25,13 @@ const ProductPicture = ({picture, name, price, id, discount, priceRetriever, pic
         setPriceWithDiscount(result);
     }
 
-    priceWithDiscount?  priceRetriever(parseFloat(priceWithDiscount)):priceRetriever(parseFloat(price));
+    priceWithDiscount ?  priceRetriever(parseFloat(priceWithDiscount)):priceRetriever(parseFloat(price));
 
     pictureRetriever(picture)
 
     return(
         <>
-            <Link to={`/item/${id}`} className='flex justify-center items-center w-full md:h-80 md:w-80'><img src={picture} alt="Camisa Negra con Logo" className=' w-4/5 md:h-full md:w-auto'/></Link>
+            <Link to={`/item/${id}`} className={stock === 0 ? 'flex  justify-center  items-center  w-full  md:h-80  md:w-80  pointer-events-none' : 'flex  justify-center  items-center  w-full  md:h-80  md:w-80'}><img src={picture} alt="Camisa Negra con Logo" className=' w-4/5 md:h-full md:w-auto'/></Link>
             
             <div className='flex  flex-col  justify-start  items-start  md:justify-start  md:items-start  md:pl-8  mx-20  md:mx-0'>
                 <p className='w-8/12  lg:w-full  font-Mono  text-sm  pt-3  text-left'>

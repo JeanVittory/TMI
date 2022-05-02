@@ -43,10 +43,10 @@ const Product = ({picture, name, price, sizes, stock, id, discount, singleSize})
 
     return(
         <div className='grid grid-cols-1 mt-12 '>
-            <ProductPicture picture={picture} name = {name} price = {price} id = {id} discount= {discount} priceRetriever = {priceRetriever} pictureRetriever = {pictureRetriever}/>
-            <Sizes handleSelect={handleSelect} sizes= {sizes} sizeRetriever = {sizeRetriever}/>
-            <ProductQuantity initialStock = {currentStock} updateStock = {updateStock} quantityRetriever = {quantityRetriever} />
-            <div className={isProduct.length > 0 && "flex justify-around items-center"}>
+            <ProductPicture picture={picture} name = {name} price = {price} id = {id} discount= {discount} priceRetriever = {priceRetriever} pictureRetriever = {pictureRetriever} stock = {stock}/>
+            <Sizes handleSelect={handleSelect} sizes= {sizes} sizeRetriever = {sizeRetriever} stock = {stock}/>
+            <ProductQuantity initialStock = {currentStock} updateStock = {updateStock} quantityRetriever = {quantityRetriever} stock = {stock}/>
+            <div className={isProduct.length > 0 ? "flex justify-around items-center" : null}>
                 <AddToCart key ={id} id = {id} singleSize ={singleSize} name = {name} price = {priceRetrieved} quantity = {quantityRetrieved} size={sizeRetrieved} picture = {pictureRetrieved} stock = {stock}/>
                 {isProduct.length > 0 && <GoToCart/>}
             </div>

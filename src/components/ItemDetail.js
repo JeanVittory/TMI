@@ -73,10 +73,10 @@ const ItemDetail = ({product}) => {
                     <p className='font-Sans text-xs  tracking-widest'>COLOR: <span className='align-top  font-Mono text-[9px]'>{product.color.color}</span></p>
                     <div className='w-6  h-6 border-2 border-black  mt-2  flex justify-center items-center'><div className={'bg-black  w-4  h-4'}></div></div>
                     <div className='mt-10'>
-                        <Sizes sizes={product.sizes} handleSelect={handleSelect} sizeRetriever = {sizeRetriever}/>
+                        <Sizes sizes={product.sizes} handleSelect={handleSelect} sizeRetriever = {sizeRetriever} stock = {product.stock}/>
                     </div>
                     <div className='mt-5'>
-                        <ProductQuantity initialStock={currentStock} updateStock={updateStock} quantityRetriever = {quantityRetriever}/>
+                        <ProductQuantity initialStock={currentStock} updateStock={updateStock} quantityRetriever = {quantityRetriever}stock = {product.stock}/>
                     </div>
                     <div className= {`mt-14 ${isProduct.length > 0 ? "flex justify-around items-center ": ''}`} >
                         <AddToCart key ={product.id} id = {product.id} name = {product.name} price = {priceWithDiscount ? priceWithDiscount: product.price} quantity = {quantityRetrieved} size = {sizeRetrieved} picture = {product.image} stock= {product.stock} singleSize ={product.singleSize}/>

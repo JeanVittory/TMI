@@ -1,16 +1,27 @@
 import add from '../assets/svgs/add.svg'
 import less from '../assets/svgs/less.svg'
-import { useContext, useEffect, useState} from "react";
+import { useContext, useEffect } from "react";
 import AddContext  from "../context/addCartContext";
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 
-const Cart = ({id, name, picture, price, initialQuantity, size, stock}) =>{
+const Cart = ({id, name, picture, price, initialQuantity, size}) =>{
 
-    const {removeItem, handlerQuantityLess, handlerQuantityAdd} = useContext(AddContext);
+    const {removeItem, handlerQuantityLess, handlerQuantityAdd, productsAdded} = useContext(AddContext);
+
+    const product = productsAdded.find(prod => prod.id === id)
+    
+    useEffect(() =>{
+        if(initialQuantity >= product.stock){
+            toast("you've exceeded the quantity in stock", {
+                bodyClassName: 'font-Mono text-sm'
+            }); 
+        }
+    }, [initialQuantity]) //eslint-disable-line
 
     return (     
         <>
             <div className="flex  my-4 md:w-full">
+                <ToastContainer autoClose={3000} limit = {1}/>
                 <img src={picture} alt="porduct added" className="w-2/5 md:w-3/5 lg:w-2/5 mx-auto p-2"/>
                 <div className="self-center  ml-5  p-4 ">
                     <p className="font-Mono text-sm">{name}</p>

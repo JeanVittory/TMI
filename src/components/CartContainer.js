@@ -2,15 +2,16 @@ import { useContext, useState, useEffect} from "react";
 import AddContext  from "../context/addCartContext";
 import Cart from "./Cart";
 import { useNavigate } from 'react-router-dom';
+import { writeBatch, getDocs, query, where, collection, documentId, addDoc } from "firebase/firestore";
+import { firestoreDb } from "../services/firebase";
 
 const CartContainer = () =>{
 
     const {productsAdded} = useContext(AddContext);
-    const [total, setTotal ] = useState([])
+    const [total, setTotal ] = useState([]);
 
     let navigate = useNavigate();
     
-
     useEffect(()=>{
         const subTotal = () =>{
             const prices = productsAdded.map(e => e.price && e.price * e.quantity);
@@ -18,12 +19,58 @@ const CartContainer = () =>{
             return setTotal(result);
         }
 
-        subTotal()
-    }, [productsAdded])
+        subTotal();
+    }, [productsAdded]);
 
     const handleNavigate = () =>{
         navigate('/');
     };
+
+    const createOrder = () =>{
+        const objOrder = {
+            itemsBuyed: productsAdded,
+            buyerData: {
+                name: 'Jean Carlo',
+                surname: 'Jiménez Laguna',
+                phone: 3456789,
+                email: 'juanito43@yahoo.com',
+                address: 'Carrera 45 numero 56-12 barrio Las Palmas',
+                city: 'Cali',
+            },
+            totalBuyed: total,
+            date: new Date() 
+        };
+
+        const batch = writeBatch(firestoreDb);
+        const collectionRef = collection(firestoreDb, 'products');
+        const ids = productsAdded.map(product => product.id);
+        const unvalidStock = [] 
+
+        getDocs(query(collectionRef, where(documentId(), 'in', ids))).then(response =>{
+            response.docs.forEach(doc =>{
+                const documentData = doc.data()
+                const productQuantitySelected = productsAdded.find(product => product.id === doc.id)?.quantity;
+
+                if(documentData.stock >= productQuantitySelected){
+                    batch.update(doc.ref, {stock: documentData.stock - productQuantitySelected});
+                }else{
+                    unvalidStock.push({id: doc.id, ...documentData})
+                }
+            })
+        }).then(() =>{
+            if(!unvalidStock.length){
+                const collectionRef = collection(firestoreDb, 'orders');
+                return addDoc(collectionRef, objOrder);
+            }else{
+                return Promise.reject({nameError: 'you have exceeded the quantity in stock', productsOnError: unvalidStock});
+            }
+        }).then(({id})=>{
+            batch.commit();
+            console.log(`Your order id is : ${id}`)
+        }).catch((error) =>{
+            console.log(error)
+        })
+    }
 
     return(
         <>
@@ -47,7 +94,7 @@ const CartContainer = () =>{
                             <div className="grid  grid-cols-2  md:col-span-3  md:justify-self-end  md:grid  md:grid-cols-2  my-4  gap-x-4 md:gap-4">        
                                 <p className="font-Sans justify-self-end font-bold my-4">SUBTOTAL</p>
                                 <p className="font-Mono my-4">${parseFloat(total).toFixed(2)}</p>
-                                <button className="col-span-2  justify-self-center bg-black text-white p-2  w-1/2">Check Out</button>
+                                <button className="col-span-2  justify-self-center bg-black text-white p-2  w-1/2" onClick={createOrder}>Check Out</button>
                             </div>
                         </section>
                     </div>
