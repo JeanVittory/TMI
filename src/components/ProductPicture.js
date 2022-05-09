@@ -25,9 +25,11 @@ const ProductPicture = ({picture, name, price, id, discount, priceRetriever, pic
         setPriceWithDiscount(result);
     }
 
-    priceWithDiscount ?  priceRetriever(parseFloat(priceWithDiscount)):priceRetriever(parseFloat(price));
-
-    pictureRetriever(picture)
+    
+    useEffect(() =>{
+        priceWithDiscount ?  priceRetriever(parseFloat(priceWithDiscount)):priceRetriever(parseFloat(price));
+        pictureRetriever(picture)
+    },[])
 
     return(
         <>

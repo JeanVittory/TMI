@@ -18,7 +18,9 @@ const ProductQuantity = ({initialStock, updateStock, quantityRetriever, stock}) 
         };
     }, [currentStock]);
 
-    quantityRetriever(quantity)
+    useEffect(() =>{
+        quantityRetriever(quantity)
+    }, [])
 
     return(
         <div className='flex justify-center item-center'>

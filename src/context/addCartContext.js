@@ -5,7 +5,18 @@ const AddContext = createContext()
 
 const AddCartProvider = ({children})=>{
 
-    const[productsAdded, setProductsAdded] = useState([]);
+    const [productsAdded, setProductsAdded] = useState([]);
+    const [dataUser, setDataUser] = useState([]);
+    const [idPurchase, setIdPurchase] = useState('');
+
+    const dataUserRetriever = (data) =>{
+        setDataUser(data);
+    };
+
+    const idRetriever = (id) =>{
+        setIdPurchase(id)
+    }
+
     
     const handleAddProduct = (dataProductAdded) =>{
 
@@ -54,7 +65,7 @@ const AddCartProvider = ({children})=>{
         }
     }
     
-    const data = {handleAddProduct, productsAdded, removeItem, handlerQuantityLess, handlerQuantityAdd};
+    const data = {handleAddProduct, productsAdded, setProductsAdded, removeItem, handlerQuantityLess, handlerQuantityAdd, dataUser, idPurchase, dataUserRetriever, idRetriever};
     
     return(
         <AddContext.Provider value = {data}>

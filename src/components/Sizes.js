@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 const Sizes = ({sizes, sizeRetriever, stock}) =>{
@@ -25,8 +25,11 @@ const Sizes = ({sizes, sizeRetriever, stock}) =>{
     const handleSelectedSize = (e) =>{
         setSelectedSize(e.target.getAttribute("data-size"));
     }
+    useEffect(()=>{
+        sizeRetriever(selectedSize);
+    },[selectedSize])
 
-    sizeRetriever(selectedSize);
+
 
     return (
         
