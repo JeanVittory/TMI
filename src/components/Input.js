@@ -10,9 +10,9 @@ const Input = (props) =>{
         setFocused(true);
     }
     return(
-        <div className = 'formInput'>
-            <label htmlFor="">{label}</label>
-            <input className='inputs-form' onChange={onChange} {...inputsProps} onFocus={() => inputsProps.name === "confirmPassword" && setFocused(true)} onBlur={handleFocus} focused = {focused.toString()}/>
+        <div className = {`formInput ${inputsProps.divition && 'mb-4 border-b py-4'}`}>
+            <label className='italic text-xs'>{label}</label>
+            <input className='inputs-form' onChange={onChange} {...inputsProps} onFocus={() => inputsProps.name === "phone" && setFocused(true)} onBlur={handleFocus} focused = {focused.toString()}/>
             <span className='errorMessage'>{errorMessage}</span>
         </div>
     )

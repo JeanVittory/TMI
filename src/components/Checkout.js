@@ -11,12 +11,14 @@ const Checkout = () =>{
   const [total, setTotal ] = useState([]);
   const [dataUser, setDataUser] = useState({
     email : '',
+    confirmEmail: '',
     name : '',
     lastName : '',
     address: '',
     city: '',
     phone: ''
   });
+  const [confirmOrder, setConfirmOrder] = useState(false)
 
   const createOrder = () =>{
     const objOrder = {
@@ -73,11 +75,23 @@ const Checkout = () =>{
       type: 'email',
       placeholder: 'Email',
       errorMessage: 'It should be a valid email address!',
-      required: 1
+      required: 1,
+      label: 'please give us your email to contact you immediately and give you the shipping details.',
     },
 
     {
       id: 2,
+      name: 'confirmEmail',
+      type: 'email',
+      placeholder: 'Confirm Email',
+      errorMessage: "The emails don't match!",
+      required: 1,
+      pattern: dataUser.email,
+      divition: 1
+    },
+
+    {
+      id: 3,
       name: 'name',
       type: 'text',
       placeholder: 'Name',
@@ -87,7 +101,7 @@ const Checkout = () =>{
     },
     
     {
-      id: 3,
+      id: 4,
       name: 'lastName',
       type: 'text',
       placeholder: 'Last Name',
@@ -97,7 +111,7 @@ const Checkout = () =>{
     },
     
     {
-      id: 4,
+      id: 5,
       name: 'address',
       type: 'text',
       placeholder: 'Address',
@@ -106,7 +120,7 @@ const Checkout = () =>{
     },
 
     {
-      id: 5,
+      id: 6,
       name: 'city',
       type: 'text',
       placeholder: 'City',
@@ -115,7 +129,7 @@ const Checkout = () =>{
     },
 
     {
-      id: 6,
+      id: 7,
       name: 'phone',
       type: 'text',
       placeholder: 'Phone',
@@ -123,19 +137,19 @@ const Checkout = () =>{
       pattern: "^[0-9].{3,}$",
       required: 1
     }
-  ]
+  ];
    
   const handleSubmit = (e) =>{
     e.preventDefault();
-  }
+  };
     
   const onChange = (e) => {
-    setDataUser({...dataUser, [e.target.name]: e.target.value})
-  }
+    setDataUser({...dataUser, [e.target.name]: e.target.value});
+  };
     
   useEffect(()=>{
     document.title = 'Red Sun Cult - Checkout';
-  },[])
+  },[]);
     
   useEffect(()=>{
     const subTotal = () =>{
@@ -145,6 +159,16 @@ const Checkout = () =>{
     }
     subTotal();
   }, [productsAdded]);
+
+  useEffect(()=>{
+      Object.values(dataUser).forEach(e =>{
+        if(!e){
+          setConfirmOrder(false)
+        }else{
+          setConfirmOrder(true);
+        } 
+      })
+  },[dataUser])
 
   return(
     <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 ">
@@ -170,7 +194,7 @@ const Checkout = () =>{
             {inputs.map (element => { 
               return <Input key= {element.id} {...element} value= {dataUser[element.name]} onChange = {onChange}/> 
             })}
-            <Link to='/orderConfirmed' onClick={createOrder} className="buttonForm">Confirm Order</Link>
+            <Link to='/orderConfirmed' onClick={createOrder} className={`buttonForm ${confirmOrder || 'pointer-events-none'}`}>Confirm Order</Link>
         </form>
       </div>
     </div>   

@@ -20,7 +20,7 @@ const Cart = ({id, name, picture, price, initialQuantity, size}) =>{
 
     return (     
         <>
-            <div className="flex  my-4 md:w-full">
+            <div className="flex  my-8 md:w-full">
                 <ToastContainer autoClose={3000} limit = {1}/>
                 <img src={picture} alt="porduct added" className="w-2/5 md:w-3/5 lg:w-2/5 mx-auto p-2"/>
                 <div className="self-center  ml-5  p-4 ">

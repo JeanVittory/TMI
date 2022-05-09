@@ -37,8 +37,8 @@ const CartContainer = () =>{
            ) :(
                         <div className="container mx-auto">
 
-                        <h2 className="font-Sans  font-semibold  tracking-wider  text-2xl my-10">CART</h2>
-                        <button className='border border-black p-2 mt-4 bg-black text-white font-Mono text-sm tracking-widest' onClick={handleNavigate}>Keep buying</button>
+                        <h2 className="font-Sans  font-semibold  tracking-wider  text-2xl my-10 ml-8 md:ml-0">CART</h2>
+                        <button className='border border-black p-2 mt-4 ml-8 md:ml-0 bg-black text-white font-Mono text-sm tracking-widest' onClick={handleNavigate}>Keep buying</button>
                         <section className="grid md:grid-cols-3">
                             
                             <p className="md:col-span-2  justify-self-end  my-4  font-mono  tracking-widest  text-sm hidden  md:block">QUANTITY</p>

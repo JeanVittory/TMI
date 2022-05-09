@@ -1,6 +1,7 @@
 import cartWidget from '../assets/svgs/cartWidget.svg';
 import {useContext, useEffect, useState} from 'react';
 import AddContext from '../context/addCartContext';
+import { Link } from 'react-router-dom';
 
 const CartWidget = () =>{
 
@@ -23,7 +24,7 @@ const CartWidget = () =>{
                     <div className= 'bg-red-500  w-5  h-5  rounded-full  relative  -top-2  -right-9'>
                         <span className='flex  justify-center  items-center w-5  h-5 '>{totalQuantity}</span>
                     </div>
-                    <img src={cartWidget} alt='Carrito' className= 'w-7'/>
+                    <Link to='/cart'><img src={cartWidget} alt='Carrito' className= 'w-7'/></Link>
                 </div>
             )}
         </>
