@@ -7,8 +7,8 @@ import Footer from './components/Footer';
 import CartContainer from './components/CartContainer';
 import OrderConfirmed from './components/OrderConfirmed';
 import Error404 from './components/Error404';
-import { AddCartProvider } from './context/addCartContext';
 import Checkout from './components/Checkout';
+import { AddCartProvider } from './context/addCartContext';
 
 
 function App() {

@@ -25,8 +25,6 @@ const CartContainer = () =>{
         navigate('/');
     };
 
-   
-
     return(
         <>
            {!productsAdded.length?(
