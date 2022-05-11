@@ -2,10 +2,10 @@
 <div align = "center">
 
 ![GitHub repo size](https://img.shields.io/github/repo-size/JeanVittory/TMI) 
+![npm](https://img.shields.io/npm/v/npm)
 
 </div>
 
-![npm](https://img.shields.io/npm/v/npm)
 
 ![Gif using the app](./gif.gif)
 
@@ -171,3 +171,7 @@ Este componente recibe por `props` los valores que seran distribuidos en cada un
 
 Este componente final cumple la función de entregar los datos del usuario junto con el id generado por firestore de la compra realizada para que este tenga la opción de darle seguimiento al pedido si algo extemporaneo ocurre.
 
+## Final
+
+Si llegaste hasta aquí te agradezco por tomarte el tiempo de leer todo esto. Te agradezco si tienes algún comentario que me permita mejorar la aplicación.
+Un Saludo. Jean.  
