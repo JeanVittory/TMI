@@ -1,6 +1,7 @@
 ![](./%F0%9F%91%A8_%F0%9F%92%BB_Ecommerce__Ruido_Negro_%F0%9F%91%A9_%F0%9F%92%BB.png)
 ![GitHub repo size](https://img.shields.io/github/repo-size/JeanVittory/TMI)
 ![npm](https://img.shields.io/npm/v/npm)
+![Gif using the app](./gif.gif)
 
 # Ecommerce Ruido Negro
 Ruido Negro es una aplicación de compras online desarrollada para la banda de rock [Red Sun Cult](https://redsuncult.bandcamp.com/) en la cual el usuario puede encontrar toda la merch actualizada de la banda, realizar compras y registrar su correo para recibir newsletters.
@@ -72,7 +73,7 @@ Este componente también es un *Stateless Component* ya que solo se encarga de r
 
 ### Nav
 
-Este componente se encarga de renderizar condicionalmente a partír del tamaño del viewport de usuario los componentes correspondientes para la navegabilidad segun el diseño de la aplicación.
+Este componente se encarga de renderizar condicionalmente, a partír del tamaño del viewport de usuario, los componentes correspondientes para la navegabilidad segun el diseño de la aplicación.
 
 Las medidas del viewport se obtendran a partir del useEffect de la línea 12 en el cual a través de un `window.addEventListener('resize')` se ejecuta la función `handleResize` la cual setea el estado del componente `viewportDimension` con su respectivo `window.innerWidth`.
 
@@ -102,3 +103,65 @@ Adjunto a lo anterior el componente cuenta con un renderizado condicional el cua
 
 ### Footer
 Este es el componente de tipo *Stateless component* más grande de la aplicación ya que sólo cumple con la función de desplegar de manera informativa y estática los datos de redes sociales junto con un pequeño formulario el cual tiene como fín recoger el correo electrónico de los usuarios interesados en recibir información adicional de nuevos productos, promociones etc.
+
+### Product
+
+El componente `<Product/>` cumple la función de ser el marco de todo lo que representa el producto en si: su imágen, botones de agregado al carrito, cantidad e ir al carrito. Cada uno de estos items nombrados son mini componentes que aislaran la lógica concerniente a cada uno de ellos dejando así al componente padre `<Product/>` dedicado a recibir los datos por useContext y repartirlos en sus componentes hijos y de esa misma forma recuperar datos de sus componentes hijos y consolidarlos como props en el componente <AddToCart/> para enviarlos desde allí hacia el contexto de la aplicación como lo veremos más adelante. 
+
+Es importante resaltar que este componente usa las props que recibe desde `<ItemListContainer/>` para repartirlas en sus componentes hijos para que estos rendericen su contenido de manera independiente.
+
+### ProductPicture
+
+Este componente se encarga tanto de renderizar la imágen del producto como de gestionar los precios y descuentos actualizados del producto. Para lograr este objetivo el componente maneja 3 estados: `discountQuantity`, `priceWithDiscount`, `discountStyle` los cuales son seteados en un useEffect que se ejecuta en la línea 13 a partír de una validación que resulta `true` solo si la propiedad `discount`, proveniente de firestore, es proveída. Estos estados antes mencionados gestionan tanto las operaciones para realizar los descuentos sobre el precio base del producto como los estilos que se le aplicaran. 
+
+Un segundo useEffetc en la línea 29 ejecuta condicional el recuperador de precios e imágen para que este sea envíado a `<AddToCart/>` desde el componente `<Product/>`.
+
+Por último en la etapa de renderizado la imagen esta envuelta en un `Link` de `react-router-dom` con el fin de capturar dinamicamente el `id` del producto y enviarlo a la ruta de `<ItemDetailContainer/>` en `<App/>` y lograr un `path` dinámico.
+
+### ProductQuantity
+
+Este componente contiene en su lógica la contabilización de la cantidad de productos que el usuario desea comprar a partír de los click ejercidos en los botones de suma y resta. Para lograr este objetivo se apoya de un custom hook `useQuantity` el cual gestiona este proceso valiendose del `initialStock` que es el stock actualizado después del evento click y el `stock` que es el stock actualizado desde firestore.
+
+A través del uso de un useEffect en la línea 12 el componente actualiza el stock en firestore para disparar un mensaje de alerta con `React Toastify` si el usuario alcanzó el máximo de stock disponible. 
+
+### SelectCategories
+
+Este componente no cuenta con un manejo de estado. Se encarga de renderizar las propiedades `categories` disponibles que provienen de firestore y `handleSelectCategories` que es una función `onChange` que recupera el `value` de su respectivo `target` y es usado en el `useNavigate` del componente `<ItemListContainer/>` para filtrar la UI según el parámetro de busqueda configurado en dicho `value` antes nombrado.
+
+### Sizes
+
+Este componente esta compuesto por un estado `selectedSize` el cual almacena en como valor la talla seleccionada por el usuario para luego ser enviada a través de la función `sizeRetriever` hacia el componente `<Product/>`. En su etapa de renderizado, este componente valida si la propiedad `sizes` se encuentra dentro del objeto `props` y si esta validación es positiva despliega estas tallas a través de un `Array.map` y si la validación da negativa se renderiza en su lugar un mensaje `single size` el cual quiere decir que el producto es de talla única.
+
+### ItemDetail
+
+Este componente se puede reacionar de manera muy profunda con el componente antes descrito `<Product/>` ya que su objetivo en cuanto a lógica es similar a excepción de detalles en su renderizado y el uso de los estado `discountQuantity` y `priceWithDiscount` los cuales son usados en un renderizado condicional dentro del mismo componente y el almacenamiento de la operación de descuento respectivamente. 
+
+### GoToCart
+
+Este componente es un *Stateless component* el cual se dedica unicamente a renderizar un botón que dirija al usuario hacia el la UI que desglosa los productos agregados hasta el momento junto con su respectivo total.
+
+
+### AddToCart 
+
+Este componente se comunica con el componente `<AddCartProvider/>` el cual se encarga de administrar los productos que son agregados al carrito mediante la función `handleAddProduct` la cual es ejecutada por el componente `<AddToCart/>` en su respectivo botón. `HandleAddProduct` recibe como parametros toda la información necesaria y suministrada de las propiedades de `<AddToCart/>`  para setear un objeto dentro del estado global de la aplicación `productsAdded` alojado en el componente `<AddCartProvider/>`. 
+
+### Checkout
+
+Este componente tiene como función agregar un documento nuevo a la colección de `orders` en firestore a la vez de que actualiza el stock en la coleccion de productos a partir de la cantidad de productos comprados por el usuario. 
+
+Para lograr este objetivo el componente crea un estado `dataUser` el cual es actualizado desde el evento `onChange` del componente `<Input/>` que veremos más adelante. 
+
+Por otro lado a través de la función `createOrder` el componente genera un objeto `objOrder` el cual sera actualizado con los valores de `dataUser` para posteriorme ser empujado como documento a la coleccion de `orders` en firestore.
+
+Así mismo, el componente cuenta con una referencia en memoria de un array de objetos los cuales cuenta con los valores que seran agregados, en la etapa de renderizado, a cada uno de los inputs del formulario permitiendo así la modificación de estos inputs de una forma más sencilla y rápida.
+
+Por último el componente envía datos a través de `dataUserRetriever` y `idRetriever` hacia el componente que provee el contexto de la aplicación con el fín de que este comparta tanto los datos de usuario como el id al componente final de la aplicación llamado `<OrderConfirmed/>`. 
+
+### Input
+
+Este componente recibe por `props` los valores que seran distribuidos en cada uno de los `inputs` del formulario. Así mismo cuenta con un estado con un valor `Boolean` el cual permite setear una cofiguración CSS en el caso de que el usuario ejecute un evento de tipo `onBlur`. 
+
+### OrderConfirmed
+
+Este componente final cumple la función de entregar los datos del usuario junto con el id generado por firestore de la compra realizada para que este tenga la opción de darle seguimiento al pedido si algo extemporaneo ocurre.
+
