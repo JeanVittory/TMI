@@ -3,6 +3,10 @@
 ![npm](https://img.shields.io/npm/v/npm)
 
 
+
+
+
+
 ![Gif using the app](./gif.gif)
 
 # Ecommerce Ruido Negro
