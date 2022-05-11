@@ -13,6 +13,10 @@ const ItemListContainer = () =>{
     let navigate = useNavigate();
 
     useEffect(()=>{
+        document.title = 'Red Sun Cult - Merch';
+      },[]);
+
+    useEffect(()=>{
 
         getDocs(collection(firestoreDb, 'productsCategoriesAvailables')).then(response =>{
             const categories = response.docs.map(doc =>{

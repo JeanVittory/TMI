@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { SpinnerCircularSplit } from 'spinners-react';
 import AddContext  from "../context/addCartContext";
@@ -7,6 +7,12 @@ const OrderConfirmed = () =>{
 
     const {dataUser, idPurchase} = useContext(AddContext);
     let navigate = useNavigate();
+
+    useEffect(()=>{
+        document.title = 'Red Sun Cult - Order Confirmed';
+      },[]);
+    
+
     const handleNavigate = () =>{
         navigate('/');
     };

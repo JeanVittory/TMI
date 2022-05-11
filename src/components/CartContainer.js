@@ -12,6 +12,10 @@ const CartContainer = () =>{
     let navigate = useNavigate();
     
     useEffect(()=>{
+        document.title = 'Red Sun Cult - Merch';
+      },[]);
+    
+    useEffect(()=>{
         const subTotal = () =>{
             const prices = productsAdded.map(e => e.price && e.price * e.quantity);
             const result = prices.reduce((prev, current) => prev + current, 0);
