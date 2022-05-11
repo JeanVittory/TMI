@@ -1,7 +1,7 @@
 ![](./%F0%9F%91%A8_%F0%9F%92%BB_Ecommerce__Ruido_Negro_%F0%9F%91%A9_%F0%9F%92%BB.png)
 <div align = "center">
 
-    <a ![GitHub repo size](https://img.shields.io/github/repo-size/JeanVittory/TMI) </a>
+![GitHub repo size](https://img.shields.io/github/repo-size/JeanVittory/TMI) 
 
 </div>
 
