@@ -32,6 +32,13 @@ Una vez intalado NodeJs se recomienda clonar el repositorio con
 git clone https://github.com/JeanVittory/TMI
 ```
 
+Luego del anterior paso se recomienda instalar las dependencias que el proyecto necesita para su correcto funcionamiento
+siguiendo el siguiente comando:
+
+```sh
+npm install
+```
+
 Seguido de lo anterior y, usando el manejador de paquetes de node [npm](https://www.npmjs.com/), se ejecuta la aplicación con el siguiente comando: 
 
 ```sh
